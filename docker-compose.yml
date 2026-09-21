@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+  db:
+    image: mariadb:10.11
+    container_name: drupal_web_db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpass_change_me}
+      MARIADB_DATABASE: ${DB_NAME:-drupal_web}
+      MARIADB_USER: ${DB_USER:-drupal_web_user}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-drupal_web_pass}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - drupal_web_net
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  drupal:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: drupal_web_site
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${HTTP_PORT:-8080}:80"
+    environment:
+      DRUPAL_DB_HOST: db
+      DRUPAL_DB_NAME: ${DB_NAME:-drupal_web}
+      DRUPAL_DB_USER: ${DB_USER:-drupal_web_user}
+      DRUPAL_DB_PASSWORD: ${DB_PASSWORD:-drupal_web_pass}
+    volumes:
+      # Persist Drupal's own writable dirs (sites/default/files etc.) across rebuilds
+      - drupal_sites:/var/www/html/sites
+      - drupal_modules:/var/www/html/modules
+      - drupal_profiles:/var/www/html/profiles
+      - drupal_themes:/var/www/html/themes
+      # Mount our custom theme and custom module straight from the repo
+      - ./web/themes/custom/drupal_web_theme:/var/www/html/themes/custom/drupal_web_theme
+      - ./web/modules/custom/drupal_web_pages:/var/www/html/modules/custom/drupal_web_pages
+    networks:
+      - drupal_web_net
+
+  adminer:
+    image: adminer:latest
+    container_name: drupal_web_adminer
+    restart: unless-stopped
+    ports:
+      - "${ADMINER_PORT:-8081}:8080"
+    depends_on:
+      - db
+    networks:
+      - drupal_web_net
+
+volumes:
+  db_data:
+  drupal_sites:
+  drupal_modules:
+  drupal_profiles:
+  drupal_themes:
+
+networks:
+  drupal_web_net:
+    driver: bridge

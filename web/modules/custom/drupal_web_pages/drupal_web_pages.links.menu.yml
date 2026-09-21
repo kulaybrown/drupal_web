@@ -1,0 +1,17 @@
+drupal_web_pages.home:
+  title: 'Home'
+  route_name: drupal_web_pages.home
+  menu_name: main
+  weight: -10
+
+drupal_web_pages.about:
+  title: 'About'
+  route_name: drupal_web_pages.about
+  menu_name: main
+  weight: 0
+
+drupal_web_pages.faqs:
+  title: 'FAQs'
+  route_name: drupal_web_pages.faqs
+  menu_name: main
+  weight: 10

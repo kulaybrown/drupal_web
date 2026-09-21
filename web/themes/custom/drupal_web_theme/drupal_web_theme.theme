@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function my_custom_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $result = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+
+  if ($result && $result != $current_path) {
+    $path_part = trim($result, '/');
+    $path_args = explode('/', $path_part);
+    $clean_path = implode('__', $path_args);
+    $clean_path = str_replace('-', '_', $clean_path);
+    $suggestions[] = 'page__' . $clean_path;
+  }
+}

@@ -1,0 +1,48 @@
+<div id="page-wrapper" class="site-wrapper">
+  <!-- Site Header & Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container header-container">
+      <div class="site-branding">
+        {{ page.branding }}
+        <a href="{{ front_page }}" rel="home" class="site-logo-link">My Drupal Site</a>
+      </div>
+      
+      <nav class="primary-navigation" role="navigation" aria-label="Main Navigation">
+        <ul>
+          <li><a href="{{ front_page }}">Home</a></li>
+          <li><a href="{{ base_path }}about">About Us</a></li>
+          <li><a href="{{ base_path }}faqs">FAQs</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="main-content-wrapper" role="main">
+    <div class="container">
+      
+      <!-- Flash Messages / Status Reports -->
+      {% if page.highlighted %}
+        <div class="messages-stack">
+          {{ page.highlighted }}
+        </div>
+      {% endif %}
+
+      <!-- Page Title if available -->
+      {% if page.content %}
+        <div class="content-area">
+          {{ page.content }}
+        </div>
+      {% endif %}
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-container">
+      {{ page.footer }}
+      <p>&copy; {{ "now"|date("Y") }} Drupal Web Project. All rights reserved.</p>
+    </div>
+  </footer>
+</div>

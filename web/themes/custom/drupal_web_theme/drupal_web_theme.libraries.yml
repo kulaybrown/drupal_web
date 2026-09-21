@@ -1,0 +1,15 @@
+global:
+  css:
+    theme:
+      css/style.css: {}
+  js:
+    js/behaviors.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - drupal_web_theme/fonts
+
+fonts:
+  css:
+    theme:
+      https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap: { type: external }

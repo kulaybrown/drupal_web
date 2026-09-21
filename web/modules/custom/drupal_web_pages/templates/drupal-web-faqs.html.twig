@@ -1,0 +1,34 @@
+<section class="hero">
+  <div class="wrap hero__inner">
+    <div>
+      <span class="hero__eyebrow">FAQs</span>
+      <h1 class="hero__title">Questions people ask us</h1>
+      <p class="hero__lede">
+        Answers to the most common questions. Add, remove, or edit these in
+        PageController::faqs().
+      </p>
+    </div>
+    <dl class="hero__panel">
+      <dt>Still stuck?</dt>
+      <dd><a href="{{ path('drupal_web_pages.about') }}">Get in touch via the About page</a></dd>
+    </dl>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="faq-list">
+      {% for item in faqs %}
+        <details class="faq-item"{% if loop.first %} open{% endif %}>
+          <summary>
+            <span>{{ item.question }}</span>
+            <span class="faq-item__icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-item__answer">
+            <p>{{ item.answer }}</p>
+          </div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>

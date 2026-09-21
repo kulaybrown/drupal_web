@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Hooks for the drupal_web_pages module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function drupal_web_pages_theme($existing, $type, $theme, $path) {
+  return [
+    'drupal_web_home' => [
+      'variables' => [],
+      'template' => 'drupal-web-home',
+    ],
+    'drupal_web_about' => [
+      'variables' => [],
+      'template' => 'drupal-web-about',
+    ],
+    'drupal_web_faqs' => [
+      'variables' => ['faqs' => []],
+      'template' => 'drupal-web-faqs',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_install().
+ *
+ * Makes /home the site's front page as soon as the module is enabled.
+ */
+function drupal_web_pages_install() {
+  \Drupal::configFactory()
+    ->getEditable('system.site')
+    ->set('page.front', '/home')
+    ->save();
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Restores Drupal's default front page setting.
+ */
+function drupal_web_pages_uninstall() {
+  \Drupal::configFactory()
+    ->getEditable('system.site')
+    ->set('page.front', '/node')
+    ->save();
+}

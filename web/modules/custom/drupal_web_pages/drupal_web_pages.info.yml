@@ -1,0 +1,5 @@
+name: Drupal Web Pages
+type: module
+description: 'Provides the Home, About, and FAQ pages for the drupal_web site and sets Home as the front page.'
+package: Custom
+core_version_requirement: ^10 || ^11

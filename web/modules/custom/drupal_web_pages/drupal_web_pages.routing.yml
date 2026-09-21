@@ -1,0 +1,23 @@
+drupal_web_pages.home:
+  path: '/home'
+  defaults:
+    _controller: '\Drupal\drupal_web_pages\Controller\PageController::home'
+    _title: 'Home'
+  requirements:
+    _permission: 'access content'
+
+drupal_web_pages.about:
+  path: '/about'
+  defaults:
+    _controller: '\Drupal\drupal_web_pages\Controller\PageController::about'
+    _title: 'About'
+  requirements:
+    _permission: 'access content'
+
+drupal_web_pages.faqs:
+  path: '/faqs'
+  defaults:
+    _controller: '\Drupal\drupal_web_pages\Controller\PageController::faqs'
+    _title: 'FAQs'
+  requirements:
+    _permission: 'access content'

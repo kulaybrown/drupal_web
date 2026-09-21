@@ -1,0 +1,41 @@
+<section class="hero">
+  <div class="wrap hero__inner">
+    <div>
+      <span class="hero__eyebrow">drupal_web</span>
+      <h1 class="hero__title">A Drupal site built for editing, not fighting the CMS.</h1>
+      <p class="hero__lede">
+        This is the starting point for your project: a working Drupal install running in
+        Docker, a custom theme with its own type and colour system, and three real pages
+        you can build on straight away.
+      </p>
+    </div>
+    <dl class="hero__panel">
+      <dt>Stack</dt>
+      <dd>Drupal 10, Apache, MariaDB — all in Docker</dd>
+      <dt>Theme</dt>
+      <dd>drupal_web_theme, a from-scratch custom theme</dd>
+      <dt>Pages</dt>
+      <dd>Home, About, and FAQs, ready to edit</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="section__title">Where to go next</h2>
+    <ul class="feature-list">
+      <li class="feature-list__item">
+        <h3><a href="{{ path('drupal_web_pages.about') }}">About</a></h3>
+        <p>Tell people what this project is and who's behind it.</p>
+      </li>
+      <li class="feature-list__item">
+        <h3><a href="{{ path('drupal_web_pages.faqs') }}">FAQs</a></h3>
+        <p>Answer the questions you get asked the most, in one place.</p>
+      </li>
+      <li class="feature-list__item">
+        <h3><a href="/user/login">Content</a></h3>
+        <p>Log in and start adding pages, articles, or your own content types.</p>
+      </li>
+    </ul>
+  </div>
+</section>

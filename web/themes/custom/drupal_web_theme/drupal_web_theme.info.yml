@@ -1,0 +1,14 @@
+name: Drupal Web Theme
+type: theme
+description: 'Custom theme for the drupal_web site with dedicated Home, About, and FAQ page treatments.'
+core_version_requirement: ^10 || ^11
+base theme: false
+libraries:
+  - drupal_web_theme/global
+
+regions:
+  header: 'Header'
+  primary_menu: 'Primary menu'
+  content: 'Content'
+  sidebar: 'Sidebar'
+  footer: 'Footer'
